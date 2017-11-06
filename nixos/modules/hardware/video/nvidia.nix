@@ -257,6 +257,8 @@ in
       ${pkgs.xorg.xrandr}/bin/xrandr --auto
     '';
 
+    services.xserver.displayManager.gdm.wayland = mkDefault false;
+
     environment.etc."nvidia/nvidia-application-profiles-rc" = mkIf nvidia_x11.useProfiles {
       source = "${nvidia_x11.bin}/share/nvidia/nvidia-application-profiles-rc";
     };
