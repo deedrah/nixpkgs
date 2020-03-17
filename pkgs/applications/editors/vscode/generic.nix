@@ -98,6 +98,10 @@ let
       runHook postInstall
     '';
 
+    preFixup = lib.optionalString (system == "i686-linux" || system == "x86_64-linux") ''
+      gappsWrapperArgs+=(--prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ systemd fontconfig ]})
+    '';
+
     inherit meta;
   };
 
